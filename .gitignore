@@ -1,0 +1,12 @@
+node_modules/
+out/
+dist/
+release/
+*.tsbuildinfo
+*.log
+.env
+.env.*
+# 内置流量内核二进制（61MB，需要时自行下载放到 resources/mihomo/）
+resources/mihomo/mihomo.exe
+.DS_Store
+Thumbs.db

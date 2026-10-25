@@ -1,0 +1,186 @@
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+@import '@fontsource/inter/700.css';
+@import '@fontsource/jetbrains-mono/400.css';
+@import '@fontsource/jetbrains-mono/500.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --canvas: 8 10 15;
+  --surface: 16 20 27;
+  --elevated: 22 27 37;
+  --line: 255 255 255;
+  --ink: 232 236 244;
+  --muted: 138 148 166;
+  --faint: 92 100 118;
+  --accent: 124 108 255;
+  --mint: 45 212 191;
+  --warn: 251 191 36;
+  --danger: 248 113 113;
+  --tone-sky: 56 189 248;
+  --tone-rose: 251 113 133;
+  color-scheme: dark;
+}
+
+[data-theme='light'] {
+  --canvas: 245 246 250;
+  --surface: 255 255 255;
+  --elevated: 249 250 253;
+  --line: 15 23 42;
+  --ink: 17 24 39;
+  --muted: 82 94 116;
+  --faint: 140 152 172;
+  --accent: 99 84 240;
+  --mint: 11 143 131;
+  --warn: 202 138 4;
+  --danger: 220 38 38;
+  --tone-sky: 2 132 199;
+  --tone-rose: 225 29 72;
+  color-scheme: light;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: rgb(var(--canvas));
+  color: rgb(var(--ink));
+  font-family: Inter, 'Noto Sans SC', 'Microsoft YaHei', system-ui, sans-serif;
+  font-size: 13px;
+  overflow: hidden;
+}
+
+::selection {
+  background: rgb(var(--accent) / 0.32);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--line) / 0.12);
+  border-radius: 99px;
+  border: 3px solid transparent;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--line) / 0.22);
+  background-clip: padding-box;
+}
+
+.drag-region {
+  -webkit-app-region: drag;
+}
+
+.no-drag {
+  -webkit-app-region: no-drag;
+}
+
+.app-bg {
+  background-image:
+    radial-gradient(900px 480px at 12% -8%, rgb(var(--accent) / 0.16), transparent 62%),
+    radial-gradient(760px 420px at 88% -12%, rgb(var(--mint) / 0.12), transparent 60%);
+}
+
+.grid-overlay {
+  background-image:
+    linear-gradient(to right, rgb(var(--line) / 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(var(--line) / 0.045) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+}
+
+.panel {
+  border-radius: 16px;
+  border: 1px solid rgb(var(--line) / 0.07);
+  background:
+    linear-gradient(180deg, rgb(var(--line) / 0.035), rgb(var(--line) / 0.012)),
+    rgb(var(--surface));
+  box-shadow: 0 1px 0 0 rgb(var(--line) / 0.05) inset, 0 24px 60px -38px rgb(0 0 0 / 0.9);
+}
+
+.panel-quiet {
+  border-radius: 14px;
+  border: 1px solid rgb(var(--line) / 0.06);
+  background: rgb(var(--line) / 0.02);
+}
+
+.mono {
+  font-family: 'JetBrains Mono', 'Cascadia Code', Consolas, monospace;
+  font-feature-settings: 'tnum' 1;
+  letter-spacing: -0.01em;
+}
+
+.focus-ring:focus-visible {
+  outline: 2px solid rgb(var(--accent) / 0.75);
+  outline-offset: 2px;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.radar-sweep {
+  background: conic-gradient(
+    from 0deg,
+    rgb(var(--mint) / 0) 0deg,
+    rgb(var(--mint) / 0.02) 210deg,
+    rgb(var(--mint) / 0.22) 320deg,
+    rgb(var(--accent) / 0.42) 356deg,
+    rgb(var(--accent) / 0) 360deg
+  );
+}
+
+.scan-line {
+  background: linear-gradient(90deg, transparent, rgb(var(--accent) / 0.75), transparent);
+}
+
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background-image: linear-gradient(90deg, transparent, rgb(var(--line) / 0.07), transparent);
+  animation: shimmer 1.8s infinite;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
